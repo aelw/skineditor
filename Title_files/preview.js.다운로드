@@ -21,7 +21,7 @@ $(function () {
         // レンダラーを作成
         renderer = new THREE.WebGLRenderer({alpha: true, preserveDrawingBuffer: true});
         // canvas要素のサイズを設定
-        height = $(window).height();
+        //height = $(window).height();
         width = $(window).width() / 3;
         console.log(width);
         $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
