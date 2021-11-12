@@ -13,7 +13,6 @@ $(function () {
     init_light();   // ライトを初期化
     init_object();  // オブジェクトを初期化
     animate();      // アニメーションを描画
-    onWindowResize();
 
     function init() {
         // キャンバスフレームDOM要素の取得
