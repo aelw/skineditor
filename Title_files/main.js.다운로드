@@ -43,6 +43,26 @@ $(function () {
 
     var timer = false;
 
+    function onResize() {
+        if (timer !== false) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(function () {
+            console.log('resized');
+            // 何らかの処理
+            var w = $(window).width() - 90 - ($(window).width() / 3);
+            var h = $(window).height() - 54 - 37 - 5;
+            if (w > h) {
+                w = h;
+            } else {
+                h = w;
+            }
+            //$('#editor_space').css('width', 70 + w + "px");
+            disableSmoothing(main_canvas);
+            copyImage(main_canvas, current_canvas);
+        }, 200);
+    }
+
     $(window).resize(onResize);
     onResize();
 });
