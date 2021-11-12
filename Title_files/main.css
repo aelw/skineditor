@@ -79,7 +79,6 @@ body:after {
 
 canvas#main {
 	background-image: url("https://i.imgur.com/bMUPoMT.png");
-    margin: 5px;
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-size: contain;
