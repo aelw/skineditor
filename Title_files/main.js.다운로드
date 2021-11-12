@@ -59,7 +59,7 @@ $(function () {
             }
             //$('#editor_space').css('width', 70 + w + "px");
             main_canvas.attr("width", w + "px");
-            main_canvas.attr("height", h + "px");
+            main_canvas.attr("height", "500px");
             disableSmoothing(main_canvas);
             copyImage(main_canvas, current_canvas);
         }, 200);
