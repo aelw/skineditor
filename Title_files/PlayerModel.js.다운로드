@@ -1,0 +1,158 @@
+/**
+ * Created by falcon on 2015/12/10.
+ */
+
+/*
+ head
+ body
+ left arm
+ right arm
+ left leg
+ right leg
+ */
+var sizes = [
+    [8, 8, 8],
+    [8, 12, 4],
+    [4, 12, 4],
+    [4, 12, 4],
+    [4, 12, 4],
+    [4, 12, 4]
+
+];
+var globalpositions = [
+    [0, 6, 0],
+    [0, -4, 0],
+    [6, 4, 0],
+    [-6, 4, 0],
+    [2, -6, 0],
+    [-2, -6, 0]
+];
+
+var offsetsinside = [
+    [0, 48],
+    [16, 32],
+    [32, 0],
+    [40, 32],
+    [16, 0],
+    [0, 32]
+];
+
+var offsetsoutside = [
+    [32, 48],
+    [16, 16],
+    [48, 0],
+    [40, 16],
+    [0, 0],
+    [0, 16]
+];
+
+var localpositions = [
+    [0, 4, 0],
+    [0, 4, 0],
+    [0, -4, 0],
+    [0, -4, 0],
+    [0, -6, 0],
+    [0, -6, 0]
+];
+
+
+function PlayerModel(texture) {
+    this.group = new THREE.Object3D();
+    this.texture = texture;
+    this.bones = [];
+    this.parts = [];
+    for (var i = 0; i < globalpositions.length; i++) {
+        var bone = new THREE.Object3D();
+        bone.position.set(globalpositions[i][0], globalpositions[i][1], globalpositions[i][2]);
+        this.bones.push(bone);
+        this.group.add(bone);
+    }
+
+    this.createModel = function (diff, offsets, transparency) {
+        if (!transparency) {
+            texture.format = THREE.RGBFormat;
+        } else {
+            texture.format = THREE.RGBAFormat;
+        }
+
+        for (var i = 0; i < globalpositions.length; i++) {
+            var textures = BoxTextures(this.texture, sizes[i], offsets[i]);
+            var part = new TexturedBox(textures, sizes[i], localpositions[i], diff, transparency);
+            //part.mesh.scale.set(scale, scale, scale);
+            this.parts.push(part);
+            this.bones[i].add(part.mesh);
+        }
+    };
+
+    this.createModel(0.0, offsetsinside, false);
+    this.createModel(0.5, offsetsoutside, true);
+
+    this.group.scale.set(4, 4, 4);
+    // シーンにオブジェクトを追加
+
+
+    this.modelTexUpdate = function () {
+        var length = this.parts.length;
+        for (var i = 0; i < length; i++) {
+            this.parts[i].boxTexUpdate();
+        }
+    };
+    //this.scene.add(this.group);
+}
+
+function TexturedBox(texture, size, position, diff, transparency) {
+    this.textures = texture;
+    this.materials = [];
+
+    var length = this.textures.length;
+    for (var i = 0; i < length; i++) {
+        this.materials.push(new THREE.MeshBasicMaterial({
+            map: this.textures[i],
+            transparent: transparency,
+            //wireframe: true,
+            shading: THREE.FlatShading
+            //side: THREE.DoubleSide
+        }));
+    }
+
+    this.material = new THREE.MeshFaceMaterial(this.materials);
+
+    var t = size.map(function(x) { return x + diff});
+
+    this.geometry = new THREE.BoxGeometry(t[0], t[1], t[2]);
+
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+    this.mesh.position.set(position[0], position[1], position[2]);
+
+    this.boxTexUpdate = function () {
+        var length = this.textures.length;
+        for (var i = 0; i < length; i++) {
+            this.textures[i].needsUpdate = true;
+        }
+    }
+}
+
+function BoxTextures(texture, size, offset) {
+    var textures = [];
+    //left
+    textures.push(texturePart(texture, [offset[0] + size[2] + size[0], offset[1] + 0], [size[2], size[1]]));
+    //right
+    textures.push(texturePart(texture, [offset[0] + 0, offset[1] + 0], [size[2], size[1]]));
+    //top
+    textures.push(texturePart(texture, [offset[0] + size[2], offset[1] + size[1]], [size[0], size[2]]));
+    //bottom
+    textures.push(texturePart(texture, [offset[0] + size[2] + size[0], offset[1] + size[1] + size[2]], [size[0], -size[2]]));
+    //front
+    textures.push(texturePart(texture, [offset[0] + size[2], offset[1] + 0], [size[0], size[1]]));
+    //back
+    textures.push(texturePart(texture, [offset[0] + size[2] + size[0] + size[2], offset[1] + 0], [size[0], size[1]]));
+    return textures;
+}
+
+function texturePart(texture, offset, size) {
+    var tex = texture.clone();
+    tex.offset.set(1.0 / 64 * offset[0], 1.0 / 64 * offset[1]);
+    tex.repeat.set(1.0 / 64 * size[0], 1.0 / 64 * size[1]);
+    return tex;
+}
