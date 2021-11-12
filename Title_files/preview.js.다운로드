@@ -78,8 +78,8 @@ $(function () {
     }
 
     function onWindowResize() {
-        height = 300;
-        width = $(window).width() / 3;
+        height = 250;
+        width = $(window).width() / 2;
         console.log(width);
 
         $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
