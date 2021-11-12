@@ -16,7 +16,6 @@ body:after {
 }
 
 #preview_space {
-    float: right;
     z-index: 10;
     overflow: hidden;
 }
