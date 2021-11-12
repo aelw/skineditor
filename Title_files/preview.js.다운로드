@@ -21,11 +21,11 @@ $(function () {
         // レンダラーを作成
         renderer = new THREE.WebGLRenderer({alpha: true, preserveDrawingBuffer: true});
         // canvas要素のサイズを設定
-        //height = $(window).height();
-        //width = $(window).width() / 3;
+        height = $(window).height();
+        width = $(window).width() / 3;
         console.log(width);
-        //$('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
-        //renderer.setSize(width, height);
+        $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
+        renderer.setSize(width, height);
         renderer.domElement.setAttribute("id", "test");
         // 背景色を設定
         // transparent
@@ -77,20 +77,6 @@ $(function () {
         scene.add(model.group);
     }
 
-    function onWindowResize() {
-        height = $(window).height();
-        width = $(window).width() / 3;
-        console.log(width);
-
-        $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
-
-        // アスペクト比を設定
-        camera.aspect = width / height;
-        // カメラの設定を更新
-        camera.updateProjectionMatrix();
-        // canvas要素のサイズを設定
-        renderer.setSize(width, height);
-    }
 
     function animate() {
         // アニメーション
