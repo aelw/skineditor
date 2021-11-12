@@ -22,10 +22,10 @@ $(function () {
         renderer = new THREE.WebGLRenderer({alpha: true, preserveDrawingBuffer: true});
         // canvas要素のサイズを設定
         //height = $(window).height();
-        width = $(window).width() / 3;
+        //width = $(window).width() / 3;
         console.log(width);
-        $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
-        renderer.setSize(width, height);
+        //$('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
+        //renderer.setSize(width, height);
         renderer.domElement.setAttribute("id", "test");
         // 背景色を設定
         // transparent
