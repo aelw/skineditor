@@ -31,23 +31,6 @@ ul li {list-style-type: none; float: left;}
     <center id="preview_space" style='height:250px;background-image: url("https://i.imgur.com/o8qySmY.jpg");background-size: cover;background-position: center'></center>
     <div>
         <div id="editor_space" style="user-select: auto;">
-            <div id="menu_space" style="user-select: auto;">
-                <div class="MCButton menu" id="new" style="user-select: auto;">new</div>
-                <label class="MCButton menu" for="load" style="user-select: auto;">
-                    <input type="file" id="load" style="display: none; user-select: auto;">
-                    load
-                </label>
-
-                <div class="MCButton menu" id="save" style="user-select: auto;"><a href="https://www.badfalcon.net/others/skineditor/index.html" download="skin.png" style="user-select: auto;">save</a></div>
-                <div class="MCButton menu" id="copy" style="user-select: auto;">copy</div>
-                <div class="MCButton menu" id="cut" style="user-select: auto;">cut</div>
-                <div class="MCButton menu" id="paste" style="user-select: auto;">paste</div>
-                <div class="MCButton menu" id="undo" style="user-select: auto;">←undo</div>
-                <div class="MCButton menu" id="redo" style="user-select: auto;">redo→</div>
-            </div>
-            <div id="tool_space" class="footer" style="user-select: auto;">
-                <input id="color" class="jscolor {onFineChange:&#39;changeColor(this)&#39;}" value="000000" autocomplete="off" style="background-image: none; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); user-select: auto;"><br style="user-select: auto;">
-            </div>
 
             <div id="tool_bar" style="user-select: auto;">
                 <ul style="user-select: auto;">
@@ -70,9 +53,29 @@ ul li {list-style-type: none; float: left;}
                     </li>
                 </ul>
             </div>
+
             <div style="background-image: url('https://imgur.com/7AhKgMK.png');">
 			<canvas id="main" style='height:100vw;width:100vw'></canvas>
 			</div>
+
+<div id="menu_space" style="user-select: auto;">
+                <div class="MCButton menu" id="new" style="user-select: auto;">new</div>
+                <label class="MCButton menu" for="load" style="user-select: auto;">
+                    <input type="file" id="load" style="display: none; user-select: auto;">
+                    load
+                </label>
+
+                <div class="MCButton menu" id="save" style="user-select: auto;"><a href="https://www.badfalcon.net/others/skineditor/index.html" download="skin.png" style="user-select: auto;">save</a></div>
+                <div class="MCButton menu" id="copy" style="user-select: auto;">copy</div>
+                <div class="MCButton menu" id="cut" style="user-select: auto;">cut</div>
+                <div class="MCButton menu" id="paste" style="user-select: auto;">paste</div>
+                <div class="MCButton menu" id="undo" style="user-select: auto;">←</div>
+                <div class="MCButton menu" id="redo" style="user-select: auto;">→</div>
+            </div>
+            <div id="tool_space" class="footer" style="user-select: auto;">
+                <input id="color" class="jscolor {onFineChange:&#39;changeColor(this)&#39;}" value="000000" autocomplete="off" style="background-image: none; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); user-select: auto;"><br style="user-select: auto;">
+            </div>
+
         </div>
     </div>
 </div>
