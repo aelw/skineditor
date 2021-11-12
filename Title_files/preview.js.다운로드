@@ -45,7 +45,7 @@ $(function () {
         camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
 
         // カメラの位置を設定
-        camera.position.set(0, 0, 225);
+        camera.position.set(0, 0, 125);
         // カメラの向きを設定
         camera.lookAt({x: 0, y: 0, z: 0});
 
