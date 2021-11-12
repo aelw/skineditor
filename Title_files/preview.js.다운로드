@@ -13,6 +13,7 @@ $(function () {
     init_light();   // ライトを初期化
     init_object();  // オブジェクトを初期化
     animate();      // アニメーションを描画
+    onWindowResize();
 
     function init() {
         // キャンバスフレームDOM要素の取得
@@ -76,6 +77,20 @@ $(function () {
         scene.add(model.group);
     }
 
+    function onWindowResize() {
+        height = 500;
+        width = $(window).width() / 3;
+        console.log(width);
+
+        $('#editor_wrapper').css("width", $(window).width() - 5 - width + "px");
+
+        // アスペクト比を設定
+        camera.aspect = width / height;
+        // カメラの設定を更新
+        camera.updateProjectionMatrix();
+        // canvas要素のサイズを設定
+        renderer.setSize(width, height);
+    }
 
     function animate() {
         // アニメーション
