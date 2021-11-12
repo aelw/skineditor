@@ -6,7 +6,6 @@ a {
 body {
     height: 100%;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 body:after {
@@ -23,7 +22,7 @@ body:after {
 }
 
 #editor_wrapper {
-    position: fixed;
+    /*position: fixed;*/
     display: flex;
     justify-content: center;
     align-items: center;
