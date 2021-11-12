@@ -78,7 +78,7 @@ $(function () {
     }
 
     function onWindowResize() {
-        height = 500;
+        height = 300;
         width = $(window).width() / 3;
         console.log(width);
 
