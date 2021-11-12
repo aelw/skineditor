@@ -78,14 +78,11 @@ body:after {
 }
 
 canvas#main {
-    /*margin: 20px;*/
-    /*width: 50%;*/
-    /*height: 100%;*/
-	background-image: url("https://www.minecraftskins.com/uploads/skins/2021/11/12/-check-your-heart--fake-collab-19318354.png?v422");
+	background-image: url("https://i.imgur.com/bMUPoMT.png");
     margin: 5px;
     background-repeat: no-repeat;
     background-size: auto 100%;
-    background-position: center;
+    background-size: contain;
 }
 
 canvas#source_canvas {
